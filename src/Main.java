@@ -1,49 +1,35 @@
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-
-import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        example2();
-           }
+        ArrayList<Bus> buses = new ArrayList<>();
+        buses.add(new Bus(1111));
+        buses.add(new Bus(2222));
 
-private static void example2() {
-        //Bus bus1=new Bus(4,
-                //{new Passenger("Оксана", 31,85), new Passenger("Вася", 17,74)});
-        int weightTotal=0;
-    ArrayList<Passenger> bus1 = new ArrayList<>();
-    bus1.add(new Passenger("Гриша", 19, 67));
-    bus1.add(new Passenger("Миша", 31,85));
-    bus1.add(new Passenger("Паша", 17,74));
-    ArrayList<Passenger> bus2 = new ArrayList<>();
-    bus2.add(new Passenger("Зина", 15, 49));
-    bus2.add(new Passenger("Нина", 50,85));
-    bus2.add(new Passenger("Ирина", 21,60));
+        buses.get(0).load(new Passenger("Вася", 22, 62));
+        buses.get(0).load(new Passenger("Петя", 23, 50.5));
+        buses.get(0).load(new Passenger("Алина", 19, 50));
 
-    ArrayList<Bus>[] buses = new ArrayList[]{bus1, bus2};
-    System.out.println("*****"+buses);
+        buses.get(1).load(new Passenger("Наташа", 24, 80));
+        buses.get(1).load(new Passenger("Катя", 29, 47.4));
+        buses.get(1).load(new Passenger("Юля", 46, 71.5));
+        buses.get(1).load(new Passenger("Семен", 71, 59));
 
-    //Passenger[] mas3 = {new Passenger("Оксана", 31,85), new Passenger("Вася", 17,74)};
+        buses.add(new Bus(3333));
 
-    System.out.println(bus1);
-
-    bus1.sort(Comparator.comparing(Passenger::toString));
-    System.out.println(bus1);
-
-    bus1.sort(Comparator.comparing(Passenger::getWeight));
-    System.out.println(bus1);
-
-    //for (Passenger p: bus1 ) {
-        //System.out.println(p.getWeight());
-
-        for (Passenger p: bus1 ) {
-            weightTotal= weightTotal+p.getWeight();
+        buses.sort(Comparator.comparingDouble(Bus::getTotalWeight));
+//        System.out.println(buses);
+        for (Bus b: buses ) {
+            System.out.println(b);
+            System.out.println(b.getTotalWeight());
         }
-            System.out.println(weightTotal);
-    }
 
-    //people.sort(Comparator.naturalOrder());   //нельзя - у Person нет метода compareTo
+        System.out.println("-----------------------------");
+        buses.sort(Comparator.comparingDouble(Bus::countMedianeWeightOfPas));
+        for (Bus b: buses ) {
+            System.out.println(b);
+            System.out.println(b.countMedianeWeightOfPas());
+        }
+    }
 }
