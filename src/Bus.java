@@ -55,4 +55,7 @@ public class Bus {
         }
         return m;
     }
+    public void unload(Passenger p){
+        pasList.remove(p);
+    }
 }
